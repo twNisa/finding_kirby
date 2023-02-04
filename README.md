@@ -10,6 +10,7 @@ Player chooses a level and gets assigned 3 random characters to find.
 Player clicks on the game image for a dropdown menu to appear, select from the dropdown and the game will check if the selection is correct.
 
 Firestore is used as the backend to store game data such as character coordinates on each level, image files, and scores for each level.
+Image files used in this project are stored in their native sizes on Firebase storage and retrieved in their native size. Further optimization can be done via Image Processing extension in Firebase to create smaller file size images so thumbnails can use the smaller files. However, because this project is done with Firebase free tier, I can not add extensions to Firebase.
 
 # Technologies
 - React
