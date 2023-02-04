@@ -4,8 +4,13 @@ import levels from '../../assets/data/levels'
 import {GameContainer, GameImageContainer, InstructionsContainer} from "./GamePageElements"
 import SelectMenu from "../../components/SelectMenu/SelectMenu"
 import GameImage from "./GameImage" 
+import firebase from 'firebase/compat/app';
+
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore'
+// const firebase = require("firebase");
+// Required for side-effects
+require("firebase/firestore");
 
 const firebaseConfig = {
   apiKey: process.env.apiKey,
@@ -16,8 +21,10 @@ const firebaseConfig = {
   appId: process.env.appId
 };
 
+async function init(){
+  
 
-
+}
 
 
 function GamePage() {
@@ -26,24 +33,25 @@ function GamePage() {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app)
   
-  async function getLevels(db){
-    try{
-      const levelsCol = collection(db, "levels")
-      const levelsSnapshot = await getDocs(levelsCol)
-      const levelsList = levelsSnapshot.docs.map( doc => doc.data())
-      setLevelsList(levelsList)
-    } catch(err){
-      console.log(err)
-    }
-  }
+  const data = {...levels}
+  console.log(data)
+  // async function addLevels(){
+  //   try{
+  //     const levelsRef = await addDoc(collection(db, "levels"), data)
+
+  //   } catch(err){
+  //     console.log(err)
+  //   }
+  // }
+ 
 
   const {id} = useParams()
 
   const level = levels.filter(level => level.id === id)[0]
 
-  React.useEffect(()=>{
-    getLevels(db)
-  }, [])
+  // React.useEffect(()=>{
+  //   addLevels()
+  // }, [])
 
 
   function shuffle(array) {
