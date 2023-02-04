@@ -4,45 +4,10 @@ import levels from '../../assets/data/levels'
 import {GameContainer, GameImageContainer, InstructionsContainer} from "./GamePageElements"
 import SelectMenu from "../../components/SelectMenu/SelectMenu"
 import GameImage from "./GameImage" 
-import firebase from 'firebase/compat/app';
-
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore'
-// const firebase = require("firebase");
-// Required for side-effects
-require("firebase/firestore");
-
-const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId
-};
-
-async function init(){
-  
-
-}
 
 
 function GamePage() {
-  const [levelsList, setLevelsList] = React.useState()
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app)
-  
-  const data = {...levels}
-  console.log(data)
-  // async function addLevels(){
-  //   try{
-  //     const levelsRef = await addDoc(collection(db, "levels"), data)
-
-  //   } catch(err){
-  //     console.log(err)
-  //   }
-  // }
+ 
  
 
   const {id} = useParams()

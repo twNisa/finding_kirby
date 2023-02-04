@@ -16,12 +16,8 @@ function App() {
   const storageRef = ref(storage)
 
   React.useEffect(()=>{
-    const data = {...levels}
-    console.log(levels)
-
     async function setData(data){
         await setDoc(doc(db, "levels", data.id), data);
-      
     }
     
     levels.forEach(level => {
@@ -30,18 +26,7 @@ function App() {
     
   }, [])
 
-  const [levels, setLevels] = React.useState([])
-  React.useEffect(()=>{
-
-    async function getLevels(){
-      const querySnapshot = await getDocs(collection(db, "levels"));
-      querySnapshot.forEach((doc) => {
-        // console.log(`${doc.id} => ${doc.data()}`);
-        setLevels(prev => prev.concat(doc.data()))
-      })
-    }
-    getLevels().catch(console.error)
-  }, [])
+  
   console.log(levels)
   return (
     <>
