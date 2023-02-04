@@ -16,12 +16,11 @@ export const LevelCardsContainer = styled.section`
 `
 export const LevelCard = styled.div`
   /* max-width: 420px; */
+  height: 20rem;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 0 8px 4px gray;
-
-
 
   &:hover{  
     cursor: pointer;
@@ -31,10 +30,12 @@ export const LevelCard = styled.div`
   }
   
   & > img{
-    width: 100%;
     transition: scale .3s ease;
+    width: 100%;
     z-index: 9999;
     position: relative;
+    object-fit: cover;
+
   }
 
 
