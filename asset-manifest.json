@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/finding_kirby/static/css/main.89c7c2c4.css",
+    "main.js": "/finding_kirby/static/js/main.1390bdfb.js",
+    "static/js/787.72817a3f.chunk.js": "/finding_kirby/static/js/787.72817a3f.chunk.js",
+    "static/media/01.png": "/finding_kirby/static/media/01.9b185309d29461f0c2c0.png",
+    "static/media/06.png": "/finding_kirby/static/media/06.88b8dbb67883e04a3d0d.png",
+    "static/media/05.png": "/finding_kirby/static/media/05.fb449d5fa4a9cd5edf05.png",
+    "static/media/02.png": "/finding_kirby/static/media/02.b2889652bf2f9be71afd.png",
+    "static/media/03.png": "/finding_kirby/static/media/03.500ad33262e56d98fbb5.png",
+    "static/media/04.png": "/finding_kirby/static/media/04.06779f17f96371e6fb04.png",
+    "static/media/logo.png": "/finding_kirby/static/media/logo.fdd01c8e05919427a3a2.png",
+    "index.html": "/finding_kirby/index.html",
+    "main.89c7c2c4.css.map": "/finding_kirby/static/css/main.89c7c2c4.css.map",
+    "main.1390bdfb.js.map": "/finding_kirby/static/js/main.1390bdfb.js.map",
+    "787.72817a3f.chunk.js.map": "/finding_kirby/static/js/787.72817a3f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.89c7c2c4.css",
+    "static/js/main.1390bdfb.js"
+  ]
+}
