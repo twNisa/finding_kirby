@@ -4,52 +4,93 @@ import levels from '../../assets/data/levels'
 import {GameContainer, GameImageContainer, InstructionsContainer} from "./GamePageElements"
 import SelectMenu from "../../components/SelectMenu/SelectMenu"
 import GameImage from "./GameImage" 
-
+import { db } from '../../firebase'
+import { getDocs,doc, getDoc, collection } from 'firebase/firestore'
+import { getStorage, ref, getDownload, getDownloadURL } from 'firebase/storage'
 
 function GamePage() {
- 
- 
-
   const {id} = useParams()
-
-  const level = levels.filter(level => level.id === id)[0]
-
-  // React.useEffect(()=>{
-  //   addLevels()
-  // }, [])
-
-
-  function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
   
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-  
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+  // const level = levels.filter(level => level.id === id)[0]
+  const [isLoading, setIsLoading] = React.useState(true)
+
+  const [level, setLevel] = React.useState()
+  const [gameImage, setGameImage] = React.useState()
+  const [targetImages, setTargetImages] = React.useState()
+
+  React.useEffect(()=>{
+    async function getLevel(){
+      const docRef = doc(db, "id", id)
+      const docSnap = await getDoc(docRef)
+
+      if(docSnap.exists()){
+        setLevel(docSnap)
+      } 
+
+      setIsLoading(false)
     }
-    return array;
-  }
+    async function getGameImage(){
+      const storage = getStorage()
+      const pathRef = ref(storage, level.firebaseStorage)
 
-  const shuffledTargetsArray = shuffle(level.targets)
-  const targets = shuffledTargetsArray.slice(0, 3)
-  const items = targets.map(target => (
-    <div key={target.name}>
-      <img src={target.url} />
-      <h1>{target.name}</h1>
-    </div>
-  ))
+      getDownloadURL(pathRef)
+        .then((url) => {
+          setGameImage(url)
+        })
+        .catch(() => {
+          console.error()
+        })
+     }
+    async function getTargetImages(){
+      level.targets.forEach(element => {
+        const storage = getStorage()
+        const pathRef = ref(storage, level.firebaseStorage)
 
+        getDownloadURL(pathRef)
+          .then((url) => {
+            setTargetImages(prev => prev.concat(url))
+          })
+          .catch(() => {
+            console.error()
+          })
+        });
+    }
+
+    getLevel().catch(console.error)
+    if(level){
+      getGameImage().catch(console.error)
+      getTargetImages().catch(console.error)
+    }
+
+  }, [])
+
+
+  // function shuffle(array) {
+  //   let currentIndex = array.length,  randomIndex;
   
+  //   // While there remain elements to shuffle.
+  //   while (currentIndex != 0) {
   
-
-
+  //     // Pick a remaining element.
+  //     randomIndex = Math.floor(Math.random() * currentIndex);
+  //     currentIndex--;
   
+  //     // And swap it with the current element.
+  //     [array[currentIndex], array[randomIndex]] = [
+  //       array[randomIndex], array[currentIndex]];
+  //   }
+  //   return array;
+  // }
+
+  // const shuffledTargetsArray = shuffle(level.targets)
+  // const targets = shuffledTargetsArray.slice(0, 3)
+  // const items = targets.map(target => (
+  //   <div key={target.name}>
+  //     <img src={target.url} />
+  //     <h1>{target.name}</h1>
+  //   </div>
+  // ))
+
 
   // used to get target position from top left corner and bottom right corner
   // mouseX and mouseY are calculated from the relative element size
@@ -68,12 +109,15 @@ function GamePage() {
   //   const mouseX = Math.round(((e.clientX - DomRect.left)/DomRect.width)*100)
   //   console.log("bottom-right: ", mouseX, mouseY)
   // }
-  
 
-
+  if(isLoading){
+    return <>
+      Loading ...
+    </>
+  }
   return (
     <GameContainer>
-      <InstructionsContainer>
+      {/* <InstructionsContainer>
         <h1>{level.name}</h1>
         <div>
           <h2>Find the Kirby with: </h2>
@@ -83,7 +127,7 @@ function GamePage() {
           </div>
         </div>
       </InstructionsContainer>
-      <GameImage targets={targets} level={level} />
+      <GameImage targets={targets} level={level} /> */}
       
     </GameContainer>
   )

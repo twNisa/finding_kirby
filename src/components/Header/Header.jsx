@@ -7,7 +7,7 @@ function Header() {
   const navigate = useNavigate()
 
   function handleClickLogo(){
-    navigate("/")
+    navigate("/finding_kirby/")
   }
 
   return (

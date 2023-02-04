@@ -36,7 +36,7 @@ function HomePage() {
 
   function handleGameClick(e){
     console.log(e.currentTarget)
-    navigate(`/game/${e.currentTarget.id}`)
+    navigate(`/finding_kirby/game/${e.currentTarget.id}`)
   }
 
   

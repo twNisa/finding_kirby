@@ -26,15 +26,13 @@ function App() {
     
   }, [])
 
-  
-  console.log(levels)
   return (
     <>
       <BrowserRouter>
           <Header />
             <Routes>
-              <Route path="/" element={<HomePage />}></Route>
-              <Route path="/game/:id" element={<GamePage />} />
+              <Route path="/finding_kirby/" element={<HomePage />}></Route>
+              <Route path="/finding_kirby/game/:id" element={<GamePage />} />
               {/* <Route path="/leaderboard" element={<LeaderBoardPage />} />
               <Route path="*" element={<NotFound />} />} */}
             </Routes>          
