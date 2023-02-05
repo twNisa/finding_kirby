@@ -149,7 +149,7 @@ function GameImage({targets, level}) {
           // onMouseUp={(e) => handleImageUp(e)}           
         />
         {selectMenu && selectMenuPos && <SelectMenu pos={selectMenuPos} targets={targetsResults} selectCharacter={selectCharacter}/> }
-        {showEndGameModal && <EndGameModal elapsedTime={elapsedTime | 0} onSubmit={handleSubmitToLeadboard} /> }
+        {showEndGameModal && <EndGameModal elapsedTime={elapsedTime} onSubmit={handleSubmitToLeadboard} /> }
       </GameImageContainer>
   )
 }

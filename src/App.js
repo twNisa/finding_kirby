@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
 import GamePage from "./pages/GamePage/GamePage"
+import LeaderboardPage from "./pages/LeaderboardPage/LeaderboardPage";
 import "./index.css"
 import React from "react";
 import {db} from "./firebase"
@@ -33,8 +34,8 @@ function App() {
             <Routes>
               <Route path="/finding_kirby/" element={<HomePage />}></Route>
               <Route path="/finding_kirby/game/:id" element={<GamePage />} />
-              {/* <Route path="/leaderboard" element={<LeaderBoardPage />} />
-              <Route path="*" element={<NotFound />} />} */}
+              <Route path="/finding_kirby/leaderboard" element={<LeaderboardPage />} />
+              {/* <Route path="*" element={<NotFound />} /> */}
             </Routes>          
       </BrowserRouter>
      
