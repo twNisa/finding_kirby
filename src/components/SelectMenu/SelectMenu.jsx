@@ -1,30 +1,23 @@
 import React from 'react'
-import {SelectMenuContainer, SelectItem, TargetBox} from "./SelectMenuElements"
+import {SelectMenuContainer, SelectItem} from "./SelectMenuElements"
 
 function SelectMenu({pos, targets, selectCharacter}) {
-  // pos : [x, y, growUp, growLeft]
-  console.log(targets)
-
-
-  // let availableTargets = targets.forEach(target => (
-  //   <SelectItem key={target.name}>
-  //     {target.name}
-  //   </SelectItem>
-  // ))
 
   let availableTargets = []
+  console.log(targets)
   for(let target in targets){
-    availableTargets.push(
-      <SelectItem key={target} onClick={() => selectCharacter(target)}  >
+    console.log(targets[target])
+    if(!targets[target] ){
+      availableTargets.push(
+      <SelectItem onClick={() => selectCharacter(target)}  >
         {target}
       </SelectItem>
     )
+    }
   }
- 
-  
+
   return (
     <>
-      <TargetBox x={pos[0]} y={pos[1]} />
       <SelectMenuContainer x={pos[0]} y={pos[1]}>
         {availableTargets}
       </SelectMenuContainer>

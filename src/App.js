@@ -4,8 +4,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import GamePage from "./pages/GamePage/GamePage"
 import "./index.css"
 import React from "react";
-import {app, db} from "./firebase"
-import {collection, getDocs, setDoc, doc} from "firebase/firestore"
+import {db} from "./firebase"
+import {setDoc, doc} from "firebase/firestore"
 import {getStorage, ref} from "firebase/storage"
 
 import levels from "./assets/data/levels";
