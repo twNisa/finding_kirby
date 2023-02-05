@@ -4,13 +4,11 @@ import levels from '../../assets/data/levels'
 import {GameContainer, GameImageContainer, InstructionsContainer} from "./GamePageElements"
 import SelectMenu from "../../components/SelectMenu/SelectMenu"
 import GameImage from "./GameImage" 
-import { db } from '../../firebase'
-import { getDocs,doc, getDoc, collection } from 'firebase/firestore'
-import { getStorage, ref, getDownload, getDownloadURL } from 'firebase/storage'
 
 function GamePage() {
   const {id} = useParams()
-  
+  const level = levels.filter(level => level.id === id)[0]
+
   function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
   
@@ -28,9 +26,9 @@ function GamePage() {
     return array;
   }
 
-  const shuffledTargetsArray = shuffle(levels.targets)
+  const shuffledTargetsArray = shuffle(level.targets)
   const targets = shuffledTargetsArray.slice(0, 3)
-  
+
   const items = targets.map(target => (
     <div key={target.name}>
       <img src={target.url} />
@@ -66,7 +64,6 @@ function GamePage() {
           <h2>Find the Kirby with: </h2>
           <div className='items'>
             {items}
-
           </div>
         </div>
       </InstructionsContainer>
