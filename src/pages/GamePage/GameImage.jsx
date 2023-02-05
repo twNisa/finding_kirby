@@ -123,7 +123,6 @@ function GameImage({targets, level}) {
   }
   function handleSubmitToLeadboard(name){
     const today = new Date().toLocaleDateString()
-    console.log(today)
 
     addScoreToFirebase(elapsedTime, level.id, name, today ).catch(console.error)
   }
